@@ -8,10 +8,10 @@ import { Ingredient } from '../shared/ingredient.model';
 })
 export class ShoppingListComponent {
   ingredients: Ingredient[] = [
-    new Ingredient('Capu', 1),
-    new Ingredient('Gatu', 1),
-    new Ingredient('Coi', 2),
-    new Ingredient('Balls Sack', 1),
+    new Ingredient('Mere', 1),
+    new Ingredient('Pere', 1),
+    new Ingredient('Faina', 2),
+    new Ingredient('Pubes', 1),
   ];
 
   onIngredientAdded(ingredient: Ingredient) {

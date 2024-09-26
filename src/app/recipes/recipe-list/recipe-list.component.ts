@@ -11,13 +11,13 @@ export class RecipeListComponent {
 
   recipes: Recipe[] = [
     new Recipe(
-      'pula mea',
-      'o reteta cu pula mea in gura ta',
+      'ciorbica',
+      'o reteta cu ciorbica',
       'https://savoriurbane.com/wp-content/uploads/2018/01/Ciorba-de-potroace-reteta-traditionala-savori-urbane.jpg'
     ),
     new Recipe(
-      'pizda de fata mare',
-      'o reteta de pizda rasa',
+      'strudel',
+      'strudel ca la Anaconda',
       'https://www.culinar.ro/uploads/modules/news/0/2015/9/23/8411/fdb_1444083698_lead_800x600_8411.jpg'
     ),
   ];
