@@ -1,10 +1,15 @@
 import { Component } from '@angular/core';
+import { Routes } from './constants';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'cucurigu';
+  currentRoute: string = Routes.recipes;
+
+  onRouteChanged(routeTo: string) {
+    this.currentRoute = routeTo;
+  }
 }
