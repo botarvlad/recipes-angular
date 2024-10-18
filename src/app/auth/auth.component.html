@@ -9,8 +9,8 @@
       *ngIf="error"
       (close)="onHandleError()"
     ></app-alert> -->
-    <div style="text-align: center">
-      <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+    <div style="display: flex; justify-content: center">
+      <mat-spinner *ngIf="isLoading"></mat-spinner>
     </div>
     <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" *ngIf="!isLoading">
       <div class="form-group">
