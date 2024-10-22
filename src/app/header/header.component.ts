@@ -1,6 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { DataStorageService } from '../shared/data-storage.service';
-import { AuthService } from '../auth/auth.service';
 import { map, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as fromApp from '../store/app.reducer';
@@ -33,12 +31,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   onFetchData() {
-    // this.dataStorageSevice.fetchRecipes().subscribe();
     this.store.dispatch(new RecipeActions.FetchRecipes());
   }
 
   onSaveData() {
-    // this.dataStorageSevice.storeRecipes();
     this.store.dispatch(new RecipeActions.StoreRecipes());
   }
 

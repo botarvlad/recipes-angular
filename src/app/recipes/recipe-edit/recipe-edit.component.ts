@@ -7,7 +7,6 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { RecipeService } from '../recipe.service';
 import { Store } from '@ngrx/store';
 import * as fromApp from '../../store/app.reducer';
 import { debounceTime, map, Subscription } from 'rxjs';
@@ -31,7 +30,6 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private recipeService: RecipeService,
     private store: Store<fromApp.AppState>
   ) {}
 
