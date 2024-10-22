@@ -5,14 +5,13 @@ const appRoutes: Routes = [
   { path: '', redirectTo: '/recipes', pathMatch: 'full' },
   {
     path: 'recipes',
-    loadChildren: () =>
-      import('./recipes/recipes.module').then((m) => m.RecipesModule),
+    loadChildren: () => import('./recipes/routes').then((m) => m.RECIPE_ROUTES),
   },
   {
     path: 'shopping-list',
-    loadChildren: () =>
-      import('./shopping-list/shopping-list.module').then(
-        (m) => m.ShoppingListModule
+    loadComponent: () =>
+      import('./shopping-list/shopping-list.component').then(
+        (m) => m.ShoppingListComponent
       ),
   },
   {

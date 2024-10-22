@@ -1,16 +1,25 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormArray,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { RecipeService } from '../recipe.service';
 import { Store } from '@ngrx/store';
 import * as fromApp from '../../store/app.reducer';
 import { debounceTime, map, Subscription } from 'rxjs';
 import * as RecipeActions from '../store/recipe.actions';
+import { NgFor } from '@angular/common';
 
 @Component({
+  standalone: true,
   selector: 'app-recipe-edit',
   templateUrl: './recipe-edit.component.html',
   styleUrl: './recipe-edit.component.css',
+  imports: [ReactiveFormsModule, NgFor],
 })
 export class RecipeEditComponent implements OnInit, OnDestroy {
   recipeForm: FormGroup;
@@ -47,10 +56,6 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     if (this.editMode) {
-      // this.recipeService.updateRecipe(this.id, {
-      //   ...this.recipeForm.value,
-      //   id: this.id,
-      // });
       this.store.dispatch(
         new RecipeActions.UpdateRecipe({
           id: this.id,
@@ -61,14 +66,10 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
         })
       );
     } else {
-      // this.recipeService.addRecipe({
-      //   ...this.recipeForm.value,
-      //   id: this.recipeService.getNextId(),
-      // });
       this.store.dispatch(
         new RecipeActions.AddRecipe({
           ...this.recipeForm.value,
-          id: this.recipeService.getNextId(),
+          id: Math.floor(Math.random() * 100) + 1,
         })
       );
     }

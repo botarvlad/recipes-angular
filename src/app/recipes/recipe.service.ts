@@ -7,7 +7,9 @@ import { Store } from '@ngrx/store';
 import * as ShoppingListActions from '../shopping-list/store/shopping-list.actions';
 import * as fromApp from '../store/app.reducer';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class RecipeService {
   recipesChanged = new Subject<Recipe[]>();
   // private recipes: Recipe[] = [

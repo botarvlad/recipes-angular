@@ -4,10 +4,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { map, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as fromApp from '../../store/app.reducer';
+import { RecipeItemComponent } from './recipe-item/recipe-item.component';
+import { NgFor } from '@angular/common';
 @Component({
+  standalone: true,
   selector: 'app-recipe-list',
   templateUrl: './recipe-list.component.html',
   styleUrl: './recipe-list.component.css',
+  imports: [RecipeItemComponent, NgFor],
 })
 export class RecipeListComponent implements OnInit, OnDestroy {
   recipes: Recipe[];

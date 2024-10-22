@@ -1,16 +1,18 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Ingredient } from '../../shared/ingredient.model';
-// import { ShoppingListService } from '../shopping-list.service';
-import { NgForm } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as ShoppingListActions from '../store/shopping-list.actions';
 import * as fromApp from '../../store/app.reducer';
+import { NgIf } from '@angular/common';
 
 @Component({
+  standalone: true,
   selector: 'app-shopping-edit',
   templateUrl: './shopping-edit.component.html',
   styleUrl: './shopping-edit.component.css',
+  imports: [FormsModule, NgIf],
 })
 export class ShoppingEditComponent implements OnInit, OnDestroy {
   @ViewChild('form') shoppingListForm: NgForm;
@@ -18,10 +20,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   editMode: boolean = false;
   editedItem: Ingredient;
 
-  constructor(
-    // private shoppingListService: ShoppingListService,
-    private store: Store<fromApp.AppState>
-  ) {}
+  constructor(private store: Store<fromApp.AppState>) {}
 
   ngOnInit(): void {
     this.subscription = this.store
