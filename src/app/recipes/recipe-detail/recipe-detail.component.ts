@@ -48,7 +48,7 @@ export class RecipeDetailComponent implements OnInit {
 
   onAddToShoppingList() {
     this.store.dispatch(
-      new ShoppingListActions.AddIngredients(this.recipe.ingredients)
+      ShoppingListActions.addIngredients({ payload: this.recipe.ingredients })
     );
   }
 
