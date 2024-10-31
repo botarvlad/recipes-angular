@@ -1,6 +1,14 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as RecipesActions from './recipe.actions';
-import { map, switchMap, withLatestFrom } from 'rxjs';
+import {
+  catchError,
+  map,
+  mergeMap,
+  of,
+  switchMap,
+  tap,
+  withLatestFrom,
+} from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Recipe } from '../recipe.model';
 import { Injectable } from '@angular/core';
@@ -11,7 +19,7 @@ import * as fromApp from '../../store/app.reducer';
 export class RecipeEffects {
   fetchRecipes$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(RecipesActions.FETCH_RECIPES),
+      ofType(RecipesActions.fetchRecipes),
       switchMap(() => {
         return this.http.get<Recipe[]>(
           'https://recipe-angular-c7232-default-rtdb.firebaseio.com/recipes.json'
@@ -26,7 +34,7 @@ export class RecipeEffects {
         });
       }),
       map((recipes) => {
-        return new RecipesActions.SetRecipes(recipes);
+        return RecipesActions.setRecipes({ payload: recipes });
       })
     )
   );
@@ -34,7 +42,11 @@ export class RecipeEffects {
   storeRecipes$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(RecipesActions.STORE_RECIPES),
+        ofType(
+          RecipesActions.addRecipe,
+          RecipesActions.deleteRecipe,
+          RecipesActions.updateRecipe
+        ),
         withLatestFrom(this.store.select('recipes')),
         switchMap(([actionData, recipesState]) => {
           return this.http.put(

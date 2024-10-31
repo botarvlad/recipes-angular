@@ -1,6 +1,6 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { HttpClient } from '@angular/common/http';
-import { catchError, EMPTY, map, of, switchMap, tap } from 'rxjs';
+import { catchError, map, of, switchMap, tap } from 'rxjs';
 
 import { environment } from '../../../environments/environment';
 import * as AuthActions from './auth.actions';
@@ -114,6 +114,8 @@ export class AuthEffects {
           )
           .pipe(
             tap((resData) => {
+              console.log(resData);
+
               this.authService.setLogoutTimer(+resData.expiresIn * 1000);
             }),
             map((resData) => {
